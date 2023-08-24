@@ -1,0 +1,106 @@
+# 1 Pod:  This is a layer of abstraction on top of a container. 
+# This is the smallest object that kubernetes can work on. 
+# In the pod, we have the container. 
+# kubectl commands will work on the pod and pod communicates there instructions to the container.
+# kubectl run --image tomcat   webserver
+# ( Webserver is pod name )
+
+# To see list of pods
+# ------------------------
+# kubectl get pods
+
+# If we do not specify replicas, it creates only one replica.
+
+# To delete the pod
+# --------------------
+# kubectl delete pods webserver
+
+
+# Lets create pod again
+# -----------------------
+# kubectl run --image tomcat webserver
+
+# To know on which node, this pod is running
+
+
+
+
+# kubectl get pods -o wide
+# ( o - stands for output )
+# But, Kubernetes performs container orchestration by using definition files. Definition files are yml files 
+
+# Definition file, will have 4 top level elements
+
+# 1. apiVersion:
+# 2. kind:
+# 3. metadata:
+# 4. spec: 
+
+
+
+# apiVersion:
+# ---------------
+# Depending on kubernetes object we want to create, there is corresponding code library we want to use.
+
+# apiVersion referes to code library
+
+# Kind     			apiVersion
+# ========================
+# Pod       			v1
+# Service   			v1
+# NameSpace     		v1
+# Secrets         		v1
+# RepliaSet       		apps/v1
+# Deployment      		apps/v1
+
+# kind:
+# ----------
+# Refers to kubernetes object which we want to create.
+# Ex: Pod, Replicaset, service etc
+
+# metadata:
+# -----------
+# Additional information about the kubernets object
+# like name, labels  etc
+
+# spec:
+# ------
+# Contains docker container related information like image name,
+#  environment variables, port mapping etc.
+#  to access the pod, expose it as nodeport kubectl expose pod nginx-pod -n nginx --port=80 --type=NodePort
+---
+apiVersion: v1
+kind: Pod
+metadata:
+ name: nginx-2
+ labels:
+  type: reverse-proxy
+spec:
+ containers: 
+  - name: appserver
+    image: nginx
+---
+apiVersion: v1
+kind: Pod
+metadata:
+ name: nginx-1
+ labels:
+  type: reverse-proxy
+spec:
+ containers: 
+  - name: appserver
+    image: nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: nginx-service
+spec:
+  selector:
+    type: reverse-proxy
+  type: NodePort
+  ports:
+  - targetPort: 80
+    port: 80
+    nodePort: 30008
+

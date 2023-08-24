@@ -1,0 +1,39 @@
+# ReplicaSet
+# ---------------
+
+# Pod is the smallest kubernetes object, which we worked on.
+# Next Level is replication controller.
+# ReplicaSet is similar to replication controller.
+# In replicatSet, we have an additional field in spec section called as "selector" field.
+
+# This selector uses a child element called "matchLabels"   , where it will search for pods based on a 
+# specific label name, and adds them to the cluster.
+
+# Ex: Create a replicaset file to start 4 tomcat replicas and then perform scaling  
+
+
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+ name: tomcat-rs
+ labels:
+  type: webserver
+  author: sunil
+spec:
+ replicas: 4
+ selector:
+  matchLabels:
+   type: webserver
+ template:
+  metadata:
+   name: tomcat-pod
+   labels:
+    type: webserver
+  spec:
+   containers:
+    - name: mywebserver
+      image: tomcat
+      ports:
+       - containerPort: 8080
+         hostPort: 9090
