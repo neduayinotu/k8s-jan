@@ -93,6 +93,8 @@ sysctl -p /etc/sysctl.conf
 #### Install kubectl, kubelet and kubeadm
 ```
 apt-get update && sudo apt-get install -y apt-transport-https curl
+
+---
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
 deb https://apt.kubernetes.io/ kubernetes-xenial main
@@ -109,9 +111,12 @@ sudo apt-mark hold kubelet kubeadm kubectl
 
 ```
 kubeadm config images pull
+
+---
+# run kubeadm init to make cluster control plane private
 kubeadm init
-or
-kubeadm init --control-plane-endpoint "PUBLIC_IP:PORT"
+# or kubeadm init --controle-plane-endpoint public:6443 to expose control plane
+kubeadm init --control-plane-endpoint "PUBLIC_IP:6443"
 ```
 #### Install any CNI plugin. We will use weavenet
 ```
