@@ -4,8 +4,6 @@
 
 # Create a deployment file to run nginx 1.7.9 with 3 replicas. 
 # Later perform a rolling update to nginx 1.9.1 
-
-
 # vim deployment.yml
 ---
 apiVersion: apps/v1
@@ -13,7 +11,7 @@ kind: Deployment
 metadata:
  name: nginx-deployment
  labels:
-  author: sunil
+  author: aziz
   type: proxyserver
 spec:
  replicas: 3

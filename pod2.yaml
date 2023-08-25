@@ -4,7 +4,7 @@ kind: Pod
 metadata:
  name: postgres-pod
  labels:
-  author: sunil
+  author: aziz
   type: database
 spec:
  containers:

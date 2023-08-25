@@ -4,7 +4,7 @@ kind: Pod
 metadata:
  name: jenkins-pod
  labels:
-  author: sunil
+  author: aziz
   ci: cd
 spec:
  containers:

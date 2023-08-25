@@ -1,12 +1,8 @@
 # ReplicationController:
 # This is an high level object used for handling multiple replicas of a specific pod. Here we can perform load balancing and scalling.
-
 # ReplicationController uses keys like replicas, template" etc in the "spec" section.
-
 # In template section we can give metadata related to the pod and also use another spec section where we can give containers information.
-
 # Ex: Create  a replication controller for creating 3 replicas of httpd
-
 ---
 apiVersion: v1
 kind: ReplicationController
@@ -27,16 +23,3 @@ spec:
         image: nginx
         ports:
         - containerPort: 80
----
-apiVersion: v1
-kind: Service
-metadata:
- name: nginx-service
-spec:
-  selector:
-    app: nginx-app
-  type: NodePort
-  ports:
-  - targetPort: 80
-    port: 80
-    nodePort: 30008

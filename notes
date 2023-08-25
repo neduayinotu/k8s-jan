@@ -1,8 +1,0 @@
-# 1. architecture overview and hands-on demo creating cluster using kubeadm
-# 2. basic structure of k8s object
-#     apiVersion:
-#     # alpha,beta,stable
-#     # api groups
-#     kind:
-#     metadata:
-#     spec:
