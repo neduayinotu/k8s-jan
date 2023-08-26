@@ -27,7 +27,7 @@ kind: Service
 metadata:
  name: nginx-service
  labels:
-  author: aziz
+  app: api
 spec:
  type: NodePort
  ports:

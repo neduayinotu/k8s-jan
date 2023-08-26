@@ -13,6 +13,7 @@
 # limitations under the License.
 
 # after deploying use
+# kubectl create -f dashboard.yaml
 # kubectl proxy
 # and access dashbaord on
 # http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
