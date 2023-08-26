@@ -25,7 +25,7 @@ kind: Pod
 metadata:
  name: webserver
  labels:
-  type: webserver
+  app: api
 spec:
  containers: 
   - name: nginx

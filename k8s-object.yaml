@@ -1,7 +1,7 @@
 # Kubernetes performs container orchestration by using definition files. Definition files are yml files 
 # Definition file, will have 4 top level elements
-# 1. apiVersion:
-# 2. kind:
+# 1. apiVersion: 
+# 2. kind: 
 # 3. metadata:
 # 4. spec: 
 
