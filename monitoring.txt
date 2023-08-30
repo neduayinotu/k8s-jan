@@ -1,0 +1,17 @@
+git clone git@github.com:prometheus-operator/kube-prometheus.git
+kubectl apply --server-side -f kube-prometheus/manifests/setup/
+kubectl apply --server-side -f kube-prometheus/manifests
+# verify
+kubectl get all -n monitoring
+# expose grafana as nodeport
+kubectl patch svc  grafana -n monitoring --type='json' -p '[{"op":"replace","path":"/spec/type","value":"NodePort"}]'
+
+# expose prometheus as nodeport
+kubectl patch svc  prometheus-k8s -n monitoring --type='json' -p '[{"op":"replace","path":"/spec/type","value":"NodePort"}]'
+
+# expose alertmanager as nodeport
+kubectl patch svc  alertmanager-main -n monitoring --type='json' -p '[{"op":"replace","path":"/spec/type","value":"NodePort"}]'
+
+DELETE NETWORK POLICIES
+kubectl -n monitoring delete networkpolicies.networking.k8s.io --all
+
