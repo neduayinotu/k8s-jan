@@ -3,9 +3,9 @@ kind: ConfigMap
 metadata:
   name: mysql-config
 data:
-  postgres_password: demo_password
-  postgres_user: demo_user
-  postgres_db: demodb
+  POSTGRES_PASSWORD: demo_password
+  POSTGRES_USER: demo_user
+  POSTGRES_DB: demodb
 ---
 # using envfrom
 apiVersion: v1
@@ -22,32 +22,32 @@ spec:
     envFrom:
       - configMapRef:
           name: mysql-config
----
-# using valuefrom
-apiVersion: v1
-kind: Pod
-metadata:
- name: postgres-pod
- labels:
-  author: aziz
-  type: database
-spec:
- containers:
-  - name: mypostgres
-    image: postgres
-    env:
-     - name: POSTGRES_PASSWORD
-       valueFrom:
-        configMapKeyRef:
-          name: mysql-config
-          key: postgres_password
-     - name: POSTGRES_USER
-       valueFrom:
-        configMapKeyRef:
-          name: mysql-config
-          key: postgres_user
-     - name: POSTGRES_DB
-       valueFrom:
-        configMapKeyRef:
-          name: mysql-config
-          key: postgres_db
+# ---
+# # using valuefrom
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#  name: postgres-pod
+#  labels:
+#   author: aziz
+#   type: database
+# spec:
+#  containers:
+#   - name: mypostgres
+#     image: postgres
+#     env:
+#      - name: POSTGRES_PASSWORD
+#        valueFrom:
+#         configMapKeyRef:
+#           name: mysql-config
+#           key: postgres_password
+#      - name: POSTGRES_USER
+#        valueFrom:
+#         configMapKeyRef:
+#           name: mysql-config
+#           key: postgres_user
+#      - name: POSTGRES_DB
+#        valueFrom:
+#         configMapKeyRef:
+#           name: mysql-config
+#           key: postgres_db
