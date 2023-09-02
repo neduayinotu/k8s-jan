@@ -7,22 +7,22 @@ data:
   POSTGRES_USER: demo_user
   POSTGRES_DB: demodb
   API_KEY: alskdlaskdlaksnlaksnde823948rnwelkdflaskflaskdj
----
-# using envfrom
-apiVersion: v1
-kind: Pod
-metadata:
- name: postgres-pod
- labels:
-  author: aziz
-  type: database
-spec:
- containers:
-  - name: mypostgres
-    image: postgres
-    envFrom:
-      - configMapRef:
-          name: postgres-config
+# ---
+# # using envfrom
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#  name: postgres-pod
+#  labels:
+#   author: aziz
+#   type: database
+# spec:
+#  containers:
+#   - name: mypostgres
+#     image: postgres
+#     envFrom:
+#       - configMapRef:
+#           name: postgres-config
 ---
 # using valuefrom
 apiVersion: v1
@@ -40,7 +40,7 @@ spec:
      - name: POSTGRES_PASSWORD
        valueFrom:
         configMapKeyRef:
-          name: mysql-config
+          name: postgres-config
           key: POSTGRES_PASSWORD
      - name: POSTGRES_USER
        valueFrom:
