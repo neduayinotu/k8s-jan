@@ -24,7 +24,7 @@ spec:
               mountPath: /docker-entrypoint-initdb.d
           env:
             - name: POSTGRES_HOST_AUTH_METHOD
-              value: trust
+              value: trust  
       volumes:
         - name: db-schema
           configMap:

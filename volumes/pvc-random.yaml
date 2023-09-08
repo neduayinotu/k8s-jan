@@ -6,8 +6,11 @@ metadata:
     type: local
 spec:
   storageClassName: manual
+  claimRef:
+    name: task-pv-claim
+    namespace: data
   capacity:
-    storage: 10Gi
+    storage: 3Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
@@ -20,11 +23,12 @@ metadata:
   name: task-pv-claim
 spec:
   storageClassName: manual
+  volumeName: task-pv-volume
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 3Gi
+      storage: 5Gi
 ---
 apiVersion: v1
 kind: Pod

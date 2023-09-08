@@ -46,4 +46,4 @@ spec:
   containers:
   - image: bibinwilson/docker-kubectl:latest
     name: kubectl
-  serviceAccountName: pl-svad
+  serviceAccountName: pl-sva
