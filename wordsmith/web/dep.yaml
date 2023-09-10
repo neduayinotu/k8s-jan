@@ -15,7 +15,6 @@ spec:
     spec:
       containers:
         - name: web
-          # FIXME:<your-org/repo:tag>
           image: bretfisher/wordsmith-web
           imagePullPolicy: Always
           ports:
